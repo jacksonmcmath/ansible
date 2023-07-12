@@ -1,0 +1,26 @@
+- name: Deploy servarr infrastructure
+  hosts: pve01-yosemite
+  tasks:
+    - name: Deploy VM (redbeard)
+    - name: Deploy LXC (plex-media-server)
+    - name: Deploy LXC (prowlarr)
+    - name: Deploy LXC (radarr)
+    - name: Deploy LXC (sonarr)
+    - name: Deploy LXC (lidarr)
+    - name: Deploy LXC (readarr)
+    - name: Deploy LXC (bazarr)
+
+- name: Configure servarr infrastructure
+  hosts: servarr
+  tasks:
+    - name: Create ansible user
+      include_role:
+        name: create_user
+      vars:
+        user: "{{ users.squ4tch }}"
+    - name: Create personal user
+      include_role:
+        name: create_user
+      vars:
+        user: "{{ users.jrm }}"
+
