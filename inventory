@@ -1,17 +1,32 @@
-[pve01-yosemite]
-pve01.local.squatch.dev
+[redbeard]
+redbeard.local.squatch.dev
 
 [plex]
 plex.local.squatch.dev
 
-[redbeard]
-redbeard.local.squatch.dev
-
-[servarr]
+[prowlarr]
 prowlarr.local.squatch.dev
+
+[radarr]
 radarr.local.squatch.dev
+
+[sonarr]
 sonarr.local.squatch.dev
+
+[lidarr]
 lidarr.local.squatch.dev
+
+[readarr]
 readarr.local.squatch.dev
+
+[bazarr]
 bazarr.local.squatch.dev
+
+[servarr:children]
+prowlarr
+radarr
+sonarr
+lidarr
+readarr
+bazarr
 
