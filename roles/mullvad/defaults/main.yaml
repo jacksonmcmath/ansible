@@ -1,0 +1,7 @@
+mullvad_download_url: https://mullvad.net/download/app/deb/latest
+mullvad_tunnel_protocol: wireguard
+mullvad_regenerate_wireguard_key: true
+mullvad_wireguard_key_rotation_interval: 72
+mullvad_lockdown_mode: true
+mullvad_auto_connect: true
+

@@ -1,0 +1,12 @@
+prowlarr_dependencies:
+  - curl
+  - sqlite3
+prowlarr_user:
+    name: prowlarr
+    uid: 910
+    create_home: true
+    groups:
+      - media
+    shell: /usr/sbin/nologin
+    system: true
+

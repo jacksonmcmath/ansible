@@ -1,0 +1,11 @@
+- name: Create ansible user
+  remote_user: root
+  ansible.builtin.include_role:
+    name: create_user
+    user: "{{ ansible_user }}"
+
+- name: Create media group
+  ansible.builtin.include_role:
+    name: create_group
+    group: "{{ media_group }}"
+

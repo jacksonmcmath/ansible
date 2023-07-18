@@ -1,0 +1,49 @@
+- name: Configure account
+  ansible.builtin.command:
+    cmd: mullvad account set {{ mullvad_account }}
+
+- name: Set tunnel protocol
+  ansible.builtin.command:
+    cmd: mullvad relay set tunnel-protocol {{ mullvad_tunnel_protocol }}
+
+- name: Generate new wireguard key
+  ansible.builtin.command:
+    cmd: mullvad tunnel wireguard key regenerate
+  when: mullvad_tunnel_protocol == 'wireguard' and mullvad_regenerate_wireguard_key
+
+- name: Set wireguard key rotation interval
+  ansible.builtin.command:
+    cmd: mullvad tunnel wireguard key rotation-interval set {{ mullvad_wireguard_key_rotation_interval }}
+
+- name: Enable LAN access
+  ansible.builtin.command:
+    cmd: mullvad lan set allow
+
+- name: Set lockdown mode
+  ansible.builtin.command:
+    cmd: mullvad lockdown-mode set {{ _bool_to_text[mullvad_lockdown_mode] }}
+  vars:
+    _bool_to_text:
+      true: on
+      false: off
+
+- name: Set auto-connect on start-up
+  ansible.builtin.command:
+    cmd: mullvad auto-connect set {{ _bool_to_text[mullvad_auto_connect] }}
+  vars:
+    _bool_to_text:
+      true: on
+      false: off
+
+- name: Set exit server (second hop)
+  ansible.builtin.command:
+    cmd: mullvad relay set location {{ mullvad_exit_location }}
+
+- name: Set entry server (first hop)
+  ansible.builtin.command:
+    cmd: mullvad relay set tunnel wireguard --entry-location {{ mullvad_entry_location }}
+
+- name: Connect
+  ansible.builtin.command:
+    cmd: mullvad connect
+

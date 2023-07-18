@@ -1,0 +1,16 @@
+[Unit]
+Description=Prowlarr Daemon
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User={{ prowlarr_user.name }}
+Group={{ prowlarr_user.name }}
+ExecStart={{ prowlarr_install_dir }}/Prowlarr -nobrowser -data={{ prowlarr_config_dir }}
+TimeoutStopSec=20
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
