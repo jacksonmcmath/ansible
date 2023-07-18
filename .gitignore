@@ -1,2 +1,19 @@
+vault_password
+
 .python-version
+
+# ansible runtime and backups
+*.original
+*.tmp
+*.bkp
+*.retry
+*.*~
+
+# exclude binaries
+*.bin
+*.jar
+*.tar
+*.zip
+*.gzip
+*.tgz
 
