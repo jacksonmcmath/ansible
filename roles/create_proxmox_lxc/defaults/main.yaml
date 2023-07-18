@@ -1,5 +1,0 @@
-- name: Create LXC
-  community.general.proxmox:
-    api_host:
-    api_user:
-
