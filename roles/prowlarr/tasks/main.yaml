@@ -1,6 +1,7 @@
 - name: Create user
   ansible.builtin.include_role:
     name: create_user
+  vars:
     user: "{{ prowlarr_user }}"
 
 - name: Install dependencies
@@ -61,4 +62,3 @@
     state: started
     enabled: true
     daemon_reload: true
-
