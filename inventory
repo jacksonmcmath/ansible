@@ -1,9 +1,6 @@
 [redbeard]
 redbeard.local.squatch.dev
 
-[plex]
-plex.local.squatch.dev
-
 [prowlarr]
 prowlarr.local.squatch.dev
 
@@ -23,10 +20,10 @@ readarr.local.squatch.dev
 bazarr.local.squatch.dev
 
 [servarr:children]
+redbeard
 prowlarr
 radarr
 sonarr
 lidarr
 readarr
 bazarr
-

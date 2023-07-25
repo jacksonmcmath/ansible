@@ -10,11 +10,6 @@
     - qbittorrent
     - sabnzbd
 
-- name: Configre plex
-  hosts: plex
-  roles:
-    - plex
-
 - name: Configure prowlarr
   hosts: prowlarr
   roles:
@@ -44,4 +39,3 @@
   hosts: bazarr
   roles:
     - bazarr
-
