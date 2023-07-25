@@ -1,7 +1,6 @@
-- name: Create group {{ name }} ({{ gid }})
+- name: Create group {{ group.name ~ '(' ~ group.uid ~ ')' }}
   ansible.builtin.group:
-    name: "{{ name }}"
-    gid: "{{ gid }}"
-    system: "{{ system | default(omit) }}"
+    name: "{{ group.name }}"
+    gid: "{{ group.gid }}"
+    system: "{{ group.system | default(omit) }}"
     state: present
-
