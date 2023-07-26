@@ -8,8 +8,18 @@ ansible_user:
   system: true
   authorized_key: "{{ lookup('file', '/home/squ4tch/.ssh/id_25519.pub') }}"
 
+personal_user:
+  name: jrm
+  uid: 1010
+  create_home: true
+  groups:
+    - sudo
+    - staff
+    - media
+  shell: /bin/zsh
+  authorized_key: "{{ lookup('file', '/home/jrm/.ssh/id_25519.pub') }}"
+
 media_group:
   name: media
   gid: 900
   system: true
-
