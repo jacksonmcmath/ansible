@@ -1,52 +1,24 @@
-- name: Create user
-  ansible.builtin.include_role:
-    name: create_user
-  vars:
-    user: "{{ prowlarr_user }}"
-
 - name: Install dependencies
   ansible.builtin.package:
     name: "{{ prowlarr_dependencies }}"
     state: present
 
-- name: Create temporary directory
-  ansible.builtin.tempfile:
-    state: directory
-  register: temp_dir
-
-- name: Download binary
-  ansible.builtin.get_url:
-    url: "{{ prowlarr_download_url }}"
-    dest: "{{ temp_dir.path }}"
-  register: download
-
-- name: Extract binary into install directory
+- name: Download and install
   ansible.builtin.unarchive:
-    src: "{{ download.dest }}"
+    src: "{{ prowlarr_download_url }}"
     dest: "{{ prowlarr_install_dir }}"
-    owner: "{{ prowlarr_user.name }}"
-    group: "{{ prowlarr_user.name }}"
     remote_src: true
-
-- name: Set file permissions for install directory
-  ansible.builtin.file:
-    path: "{{ prowlarr_install_dir }}"
     owner: "{{ prowlarr_user.name }}"
     group: "{{ prowlarr_user.name }}"
-    recurse: true
+    mode: u=rwx,g=rx,o=rx
 
 - name: Create configuration directory
   ansible.builtin.file:
     path: "{{ prowlarr_config_dir }}"
     owner: "{{ prowlarr_user.name }}"
     group: "{{ prowlarr_user.name }}"
+    mode: u=rwx,g=rx,o=rx
     state: directory
-
-- name: Remove temporary directory
-  ansible.builtin.file:
-    path: "{{ temp_dir.path }}"
-    state: absent
-  when: temp_dir.path is defined
 
 - name: Create systemd service
   ansible.builtin.template:
@@ -56,7 +28,7 @@
     group: root
     mode: u=rw,g=r,o=r
 
-- name: Start service
+- name: Start prowlarr daemon
   ansible.builtin.systemd:
     name: prowlarr.service
     state: started

@@ -1,12 +1,14 @@
+prowlarr_download_url: https://prowlarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=x64
+
+prowlarr_user:
+  name: prowlarr
+  uid: 910
+  create_home: true
+  groups:
+    - media
+  shell: /usr/sbin/nologin
+  system: true
+
 prowlarr_dependencies:
   - curl
   - sqlite3
-prowlarr_user:
-    name: prowlarr
-    uid: 910
-    create_home: true
-    groups:
-      - media
-    shell: /usr/sbin/nologin
-    system: true
-
