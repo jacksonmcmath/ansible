@@ -1,0 +1,21 @@
+sabnzbd_download_url: https://github.com/sabnzbd/sabnzbd/releases/download/4.0.3/SABnzbd-4.0.3-src.tar.gz
+
+sabnzbd_user:
+  name: sab
+  uid: 902
+  create_home: true
+  groups:
+    - media
+  shell: /usr/sbin/nologin
+  system: true
+
+sabnzbd_dependencies:
+  - curl
+  - python3
+  - unrar # requires non-free repository
+  - par2
+  - unzip
+  - p7zip-full
+  - coreutils
+  - util-linux
+  - notify-osd

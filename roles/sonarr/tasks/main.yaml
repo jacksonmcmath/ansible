@@ -1,0 +1,22 @@
+- name: Install dependencies
+  ansible.builtin.apt:
+    name: "{{ sonarr_dependencies }}"
+    state: present
+
+- name: Add Sonarr repository key
+  ansible.builtin.apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 2009837CBFFD68F45BC180471F4F90DE2A9B4BF8
+    keyring: /etc/apt/trusted.gpg.d/sonarr-repo.asc
+
+- name: Add Sonarr repository
+  ansible.builtin.apt_repository:
+    repo: deb https://apt.sonarr.tv/debian bookworm main
+    filename: sonarr
+
+- name: Install Sonarr
+  ansible.builtin.apt:
+    name: sonarr
+    state: present
+  environment:
+    DEBIAN_FRONTEND: noninteractive

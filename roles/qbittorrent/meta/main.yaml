@@ -1,0 +1,3 @@
+dependencies:
+  - role: create_user
+    user: "{{ qbittorrent_user }}"

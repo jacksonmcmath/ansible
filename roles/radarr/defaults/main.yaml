@@ -1,0 +1,3 @@
+radarr_install_dir: /opt/radarr
+radarr_config_dir: /home/{{ radarr_user.name }}/config
+radarr_port: 7878

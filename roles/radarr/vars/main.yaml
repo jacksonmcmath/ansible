@@ -1,0 +1,14 @@
+radarr_download_url: http://radarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=x64
+
+radarr_user:
+  name: radarr
+  uid: 911
+  create_home: true
+  groups:
+    - media
+  shell: /usr/sbin/nologin
+  system: true
+
+radarr_dependencies:
+  - curl
+  - sqlite3

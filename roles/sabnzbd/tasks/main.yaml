@@ -1,0 +1,44 @@
+- name: Add non-free repository
+  ansible.builtin.apt_repository:
+    repo: deb http://deb.debian.org/debian bookworm main non-free
+    state: present
+
+- name: Install dependencies
+  ansible.builtin.apt:
+    name: "{{ sabnzbd_dependencies }}"
+    state: present
+
+- name: Download release {{ sabnzbd_version }}
+  ansible.builtin.unarchive:
+    src: "{{ sabnzbd_download_url }}"
+    dest: "{{ sabnzbd_install_dir }}"
+    remote_src: true
+    mode: u=rwx,g=rx,o=rx
+
+- name: Install sabnzbd requirements
+  ansible.builtin.pip:
+    executable: pip3
+    requirements: "{{ sabnzbd_install_dir }}/requirements.txt"
+
+- name: Create configuration file
+  ansible.builtin.file:
+    name: "{{ sabnzbd_config_dir }}/sabnzbd.ini"
+    owner: "{{ sabnzbd_user.name }}"
+    group: "{{ sabnzbd_user.name }}"
+    mode: u=rwx,g=rx,o=rx
+    state: touch
+
+- name: Create systemd service
+  ansible.builtin.template:
+    src: sabnzbd.service.j2
+    dest: /etc/systemd/system/sabnzbd.service
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+
+- name: Start sabnzbd service
+  ansible.builtin.systemd:
+    name: sabnzbd.service
+    state: started
+    enabled: true
+    daemon_reload: true

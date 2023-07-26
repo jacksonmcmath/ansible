@@ -1,0 +1,15 @@
+[Unit]
+Description=SABnzbd Client
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User={{ sabnzbd_user.name }}
+Group={{ sabnzbd_user.name }}
+Environment="PYTHONIOENCODING=utf-8"
+ExecStart={{ sabnzbd_install_dir }}/SABnzbd.py -l 1 -b 0 -f {{ sabnzbd_config_dir }}/sabnzbd.ini -s 0.0.0.0:{{ sabnzbd_port }}
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,16 @@
+[Unit]
+Description=qBittorrent Client
+Wants=network-online.target
+After=local-fs.target network-online.target nss-lookup.target
+
+[Service]
+Type=simple
+PrivateTmp=false
+User={{ qbittorrent_user.name }}
+Group={{ qbittorrent_user.name }}
+ExecStart=/usr/bin/qbittorrent-nox --webui-port={{ qbittorrent_port }}
+TimeoutStopSec=1800
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

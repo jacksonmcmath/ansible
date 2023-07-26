@@ -1,0 +1,20 @@
+qbittorrent_dependencies:
+  - build-essential
+  - cmake
+  - git
+  - ninja-build
+  - pkg-config
+  - libboost-dev
+  - libssl-dev
+  - zlib1g-dev
+  - libgl1-mesa-dev
+  - libtorrent-rasterbar-dev
+
+qbittorrent_user:
+  name: qbt
+  uid: 901
+  create_home: true
+  groups:
+    - media
+  shell: /usr/sbin/nologin
+  system: true

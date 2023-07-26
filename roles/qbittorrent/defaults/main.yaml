@@ -1,0 +1,3 @@
+qbittorrent_install_dir: /opt/qbittorrent
+qbittorrent_config_dir: /home/{{ qbittorrent_user.name }}/config
+qbittorrent_port: 8080
