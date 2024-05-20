@@ -1,0 +1,16 @@
+lidarr_download_url: http://lidarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=x64
+
+lidarr_user:
+  name: lidarr
+  uid: 914
+  create_home: true
+  groups:
+    - media
+  shell: /usr/sbin/nologin
+  system: true
+
+lidarr_dependencies:
+  - curl
+  - mediainfo
+  - sqlite3
+  - libchromaprint-tools

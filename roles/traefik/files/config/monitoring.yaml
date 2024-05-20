@@ -1,0 +1,63 @@
+http:
+  routers:
+    heimdall:
+      entryPoints:
+        - https
+      rule: Host(``)
+      middlewares:
+      tls:
+        certResolver: cloudflare
+      service: heimdall
+    uptime-kuma:
+      entryPoints:
+        - https
+      rule: Host(`status.local.squatch.dev`)
+      middlewares:
+      tls:
+        certResolver: cloudflare
+      service: uptime-kuma
+    prometheus:
+      entryPoints:
+        - https
+      rule: Host(`metrics.local.squatch.dev`) && PathPrefix(`/prometheus`)
+      middlewares:
+      tls:
+        certResolver: cloudflare
+      service: prometheus
+    grafana:
+      entryPoints:
+        - https
+      rule: Host(`metrics.local.squatch.dev`) && PathPrefix(`/grafana`)
+      middlewares:
+      tls:
+        certResolver: cloudflare
+      service: grafana
+    loki:
+      entryPoints:
+        - https
+      rule: Host(`metrics.local.squatch.dev`) && PathPrefix(`/loki`)
+      middlewares:
+      tls:
+        certResolver: cloudflare
+      service: loki
+  services:
+    heimdall:
+      loadBalancer:
+        servers:
+          - url: http://10.0.30.2
+    uptime-kuma:
+      loadBalancer:
+        servers:
+          - url: http://10.0.30.3
+    prometheus:
+      loadBalancer:
+        servers:
+          - url: http://10.0.30.4
+    grafana:
+      loadBalancer:
+        servers:
+          - url: http://10.0.30.5
+    loki:
+      loadBalancer:
+        servers:
+          - url: http://10.0.30.6

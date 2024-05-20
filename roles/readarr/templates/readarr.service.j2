@@ -1,0 +1,15 @@
+[Unit]
+Description=Readarr Daemon
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User={{ readarr_user.name }}
+Group={{ readarr_user.name }}
+ExecStart={{ readarr_install_dir }}/Readarr -nobrowser -data={{ readarr_config_dir }}
+TimeoutStopSec=20
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

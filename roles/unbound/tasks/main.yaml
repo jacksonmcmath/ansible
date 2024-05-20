@@ -1,0 +1,49 @@
+- name: Install unbound
+  ansible.builtin.apt:
+    name: unbound
+    state: present
+
+- name: Create keys for remote control
+  ansible.builtin.file:
+    path: /etc/unbound/{{ item }}
+    owner: "{{ unbound_user.name }}"
+    group: "{{ unbound_user.name }}"
+    mode: u+rw,g-wx,o-rwx
+    state: touch
+    access_time: preserve
+    modification_time: preserve
+  loop:
+    - unbound_control.key
+    - unbound_control.pem
+    - unbound_server.key
+    - unbound_server.pem
+  notify:
+    - Run unbound-control-setup
+
+- name: Create configuration directory
+  ansible.builtin.file:
+    path: /etc/unbound/unbound.conf.d
+    owner: "{{ unbound_user.name }}"
+    group: "{{ unbound_user.name }}"
+    mode: u=rw,g=r,o=r
+    state: directory
+
+- name: Create configuration file
+  ansible.builtin.template:
+    src: unbound.conf.j2
+    dest: /etc/unbound/unbound.conf
+    owner: "{{ unbound_user.name }}"
+    group: "{{ unbound_user.name }}"
+    mode: u=rw,g=r,o=r
+  notify:
+    - Restart unbound
+
+- name: Create remote-control configuration file
+  ansible.builtin.template:
+    src: remote-control.conf.j2
+    dest: /etc/unbound/unbound.conf.d/remote-control.conf
+    owner: "{{ unbound_user.name }}"
+    group: "{{ unbound_user.name }}"
+    mode: u=rw,g=r,o=r
+  notify:
+    - Restart unbound

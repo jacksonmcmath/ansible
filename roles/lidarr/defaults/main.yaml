@@ -1,0 +1,3 @@
+lidarr_install_dir: /opt/lidarr
+lidarr_config_dir: /home/{{ lidarr_user.name }}/config
+lidarr_port: 8686

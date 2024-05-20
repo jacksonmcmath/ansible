@@ -1,0 +1,101 @@
+ansible_control_node:
+  node: pve-01-yosemite
+  id: 101
+  hostname: ansible-control-node
+  tags:
+    - management-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 1
+  memory:
+    dedicated: 1024 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 4 # GiB
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp # 10.0.0.100
+      tag: 1 # management vlan
+
+sandbox_01_ct:
+  node: pve-01-yosemite
+  id: 301
+  hostname: sandbox-01
+  tags:
+    - sandbox
+    - trusted-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 2
+  memory:
+    dedicated: 4096 # MiB
+    swap: 1024 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 16 # GiB
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp # 10.0.10.201
+      tag: 10 # trusted network
+
+gha_runner_01_ct:
+  node: pve-01-yosemite
+  id: 311
+  hostname: gha-runner-01
+  tags:
+    - gha-runner
+    - management-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 1
+  memory:
+    dedicated: 2048 # MiB
+    swap: 2048 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 8 # GiB
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp # 10.0.30.201
+      tag: 30 # services vlan
+
+op_connect_ct:
+  node: pve-01-yosemite
+  id: 399
+  hostname: op-connect
+  tags:
+    - services-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 1
+  memory:
+    dedicated: 1024 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 8 # GiB
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp
+      ipv6:
+        address: dhcp # 10.0.30.64
+      tag: 30 # services vlan

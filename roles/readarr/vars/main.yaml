@@ -1,0 +1,14 @@
+readarr_download_url: http://readarr.servarr.com/v1/update/develop/updatefile?os=linux&runtime=netcore&arch=x64
+
+readarr_user:
+  name: readarr
+  uid: 914
+  create_home: true
+  groups:
+    - media
+  shell: /usr/sbin/nologin
+  system: true
+
+readarr_dependencies:
+  - curl
+  - sqlite3

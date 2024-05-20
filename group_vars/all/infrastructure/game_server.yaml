@@ -1,0 +1,57 @@
+pterodactyl_panel_ct:
+  node: pve-03-acadia
+  id: 500
+  hostname: pterodactyl-panel
+  tags:
+    - gaming
+    - pterodactyl
+    - services-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 1
+  memory:
+    dedicated: 1024 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 8 # GiB
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp
+      ipv6:
+        address: dhcp # 10.0.30.100
+      tag: 30 # services vlan
+
+pterodactyl_node_01_ct:
+  node: pve-03-acadia
+  id: 501
+  hostname: pterodactyl-node-01
+  tags:
+    - gaming
+    - pterodactyl
+    - services-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 1
+  memory:
+    dedicated: 4096 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 64 # GiB
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp
+      ipv6:
+        address: dhcp # 10.0.30.101
+      tag: 30 # services vlan
+  features:
+    nesting: true

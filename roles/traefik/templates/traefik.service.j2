@@ -1,0 +1,13 @@
+[Unit]
+Description=Traefik Daemon
+
+[Service]
+Type=simple
+User={{ traefik_user.name }}
+Group={{ traefik_user.name }}
+EnvironmentFile=/etc/traefik/traefik.conf
+ExecStart={{ traefik_install_dir }}/traefik
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

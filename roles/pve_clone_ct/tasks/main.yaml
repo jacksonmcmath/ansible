@@ -1,0 +1,91 @@
+- name: Gather facts about LXC containers
+  community.general.proxmox_vm_info:
+    api_host: "{{ pve_clone_ct_pve_api_host }}"
+    api_user: "{{ pve_clone_ct_pve_api_user }}"
+    api_password: "{{ pve_api_password | default(omit) }}"
+    api_token_id: "{{ pve_api_token_id | default(omit) }}"
+    api_token_secret: "{{ pve_api_token_secret | default(omit) }}"
+    validate_certs: "{{ pve_clone_ct_pve_validate_certs }}"
+
+    node: "{{ ct.node | mandatory }}"
+    type: lxc
+    # config: current
+  register: pve_ct_info
+
+- name: Create snapshot of template LXC container
+  when: pve_ct_info | community.general.json_query("[?status=='running'].vmid") | default([], true) is contains(ct.clone.id)
+  community.general.proxmox_snap:
+    api_host: "{{ pve_clone_ct_pve_api_host }}"
+    api_user: "{{ pve_clone_ct_pve_api_user }}"
+    api_password: "{{ pve_api_password | default(omit) }}"
+    api_token_id: "{{ pve_api_token_id | default(omit) }}"
+    api_token_secret: "{{ pve_api_token_secret | default(omit) }}"
+    validate_certs: "{{ pve_clone_ct_pve_validate_certs }}"
+
+    vmid: "{{ ct.clone.id | mandatory }}"
+    snapname: "{{ pve_clone_ct_snapshot_name }}"
+    description: "{{ pve_clone_ct_snapshot_description }}"
+    state: present
+
+- name: Clone LXC container
+  community.general.proxmox:
+    api_host: "{{ pve_clone_ct_pve_api_host }}"
+    api_user: "{{ pve_clone_ct_pve_api_user }}"
+    api_password: "{{ pve_api_password | default(omit) }}"
+    api_token_id: "{{ pve_api_token_id | default(omit) }}"
+    api_token_secret: "{{ pve_api_token_secret | default(omit) }}"
+    validate_certs: "{{ pve_clone_ct_pve_validate_certs }}"
+
+    node: "{{ ct.node | mandatory }}"
+    vmid: "{{ ct.id | mandatory }}"
+    hostname: "{{ ct.hostname | mandatory }}"
+    pool: "{{ ct.pool | default(omit) }}"
+    description: "{{ ct.description | default(omit) }}"
+    tags: "{{ ct.tags | default(omit) }}"
+    clone: "{{ ct.clone.id | mandatory }}"
+    clone_type: "{{ ct.clone.type | default(omit) }}"
+    state: present
+
+- name: Remove snapshot of template LXC container
+  when: pve_ct_info | community.general.json_query("[?status=='running'].vmid") | default([], true) is contains(ct.clone.id)
+  community.general.proxmox_snap:
+    api_host: "{{ pve_clone_ct_pve_api_host }}"
+    api_user: "{{ pve_clone_ct_pve_api_user }}"
+    api_password: "{{ pve_api_password | default(omit) }}"
+    api_token_id: "{{ pve_api_token_id | default(omit) }}"
+    api_token_secret: "{{ pve_api_token_secret | default(omit) }}"
+    validate_certs: "{{ pve_clone_ct_pve_validate_certs }}"
+
+    vmid: "{{ ct.clone.id | mandatory }}"
+    snapname: "{{ pve_clone_ct_snapshot_name }}"
+    state: absent
+
+- name: Start LXC container
+  when:
+    - ct.template is not defined or not ct.template
+    - ct.started is defined and ct.started
+  community.general.proxmox:
+    api_host: "{{ pve_clone_ct_pve_api_host }}"
+    api_user: "{{ pve_clone_ct_pve_api_user }}"
+    api_password: "{{ pve_api_password | default(omit) }}"
+    api_token_id: "{{ pve_api_token_id | default(omit) }}"
+    api_token_secret: "{{ pve_api_token_secret | default(omit) }}"
+    validate_certs: "{{ pve_clone_ct_pve_validate_certs }}"
+
+    vmid: "{{ ct.id }}"
+    state: started
+
+- name: Convert LXC container to template
+  when:
+    - ct.started is not defined or not ct.started
+    - ct.template is defined and ct.template
+  community.general.proxmox:
+    api_host: "{{ pve_clone_ct_pve_api_host }}"
+    api_user: "{{ pve_clone_ct_pve_api_user }}"
+    api_password: "{{ pve_api_password | default(omit) }}"
+    api_token_id: "{{ pve_api_token_id | default(omit) }}"
+    api_token_secret: "{{ pve_api_token_secret | default(omit) }}"
+    validate_certs: "{{ pve_clone_ct_pve_validate_certs }}"
+
+    vmid: "{{ ct.id }}"
+    state: template

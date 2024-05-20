@@ -1,0 +1,5 @@
+dependencies:
+  - role: create_group
+    group: "{{ media_group }}"
+  - role: create_user
+    user: "{{ readarr_user }}"

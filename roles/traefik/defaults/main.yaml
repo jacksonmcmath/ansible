@@ -1,0 +1,4 @@
+traefik_version: v3.0.0
+traefik_install_dir: /opt/traefik
+traefik_config_dir: /etc/traefik/config
+traefik_port: 3000

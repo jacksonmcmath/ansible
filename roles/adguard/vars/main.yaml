@@ -1,0 +1,11 @@
+adguard_download_url: https://github.com/AdguardTeam/AdGuardHome/releases/download/{{ adguard_version }}/AdGuardHome_linux_amd64.tar.gz
+
+adguard_user:
+  name: adguard
+  uid: 53
+  create_home: false
+  home: "{{ adguard_install_dir }}"
+  groups:
+    - sudo
+  shell: /usr/sbin/nologin
+  system: true

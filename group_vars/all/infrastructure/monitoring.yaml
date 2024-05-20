@@ -1,0 +1,134 @@
+heimdall_ct:
+  node: pve-01-yosemite
+  id: 700
+  hostname: heimdall
+  tags:
+    - monitoring
+    - services-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 1
+  memory:
+    dedicated: 512 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 8 # GiB
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp
+      ipv6:
+        address: dhcp
+      tag: 30 # services vlan
+
+uptime_kuma_ct:
+  node: pve-01-yosemite
+  id: 701
+  hostname: uptime-kuma
+  tags:
+    - monitoring
+    - services-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 1
+  memory:
+    dedicated: 512 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 8 # GiB
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp
+      ipv6:
+        address: dhcp
+      tag: 30 # services vlan
+
+grafana_ct:
+  node: pve-01-yosemite
+  id: 702
+  hostname: grafana
+  tags:
+    - monitoring
+    - services-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 1
+  memory:
+    dedicated: 512 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 8 # GiB
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp
+      ipv6:
+        address: dhcp
+      tag: 30 # services vlan
+
+prometheus_ct:
+  node: pve-01-yosemite
+  id: 703
+  hostname: prometheus
+  tags:
+    - monitoring
+    - services-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 1
+  memory:
+    dedicated: 512 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 8 # GiB
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp
+      ipv6:
+        address: dhcp
+      tag: 30 # services vlan
+
+loki_ct:
+  node: pve-01-yosemite
+  id: 704
+  hostname: loki
+  tags:
+    - monitoring
+    - services-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 1
+  memory:
+    dedicated: 512 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 8 # GiB
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp
+      ipv6:
+        address: dhcp
+      tag: 30 # services vlan

@@ -1,0 +1,17 @@
+http:
+  routers:
+    pve:
+      entryPoints:
+        - https
+      rule: Host(`pve.local.squatch.dev`)
+      middlewares:
+      tls:
+        certResolver: cloudflare
+      service: pve
+  services:
+    pve:
+      loadBalancer:
+        servers:
+          - url: https://10.0.0.101:8006
+          - url: https://10.0.0.102:8006
+          - url: https://10.0.0.103:8006

@@ -1,6 +1,0 @@
-- name: Download and install deb package
-  ansible.builtin.include_tasks: download_and_install.yaml
-
-- name: Configure application
-  ansible.builtin.include_tasks: configure.yaml
-

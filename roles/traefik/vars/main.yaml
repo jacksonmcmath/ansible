@@ -1,0 +1,8 @@
+traefik_download_url: https://github.com/traefik/traefik/releases/download/{{ traefik_version }}/traefik_{{ traefik_version }}_linux_amd64.tar.gz
+
+traefik_user:
+  name: traefik
+  uid: 80
+  create_home: true
+  shell: /usr/sbin/nologin
+  system: true

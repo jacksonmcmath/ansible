@@ -1,0 +1,128 @@
+adguard_ct:
+  node: pve-01-yosemite
+  id: 201
+  hostname: adguard
+  tags:
+    - network
+    - management-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 2
+  memory:
+    dedicated: 2048 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 8 # GiB
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp # 10.0.0.10
+      ipv6:
+        address: dhcp
+      tag: 1 # management vlan
+
+unbound_ct:
+  node: pve-01-yosemite
+  id: 202
+  hostname: unbound
+  tags:
+    - network
+    - management-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 2
+  memory:
+    dedicated: 2048 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 8 # GiB
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp # 10.0.0.8
+      ipv6:
+        address: dhcp
+      tag: 1 # management vlan
+
+traefik_ct:
+  node: pve-01-yosemite
+  id: 203
+  hostname: traefik
+  tags:
+    - network
+    - management-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 1
+  memory:
+    dedicated: 2048 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 8 # GiB
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp # 10.0.0.2
+      tag: 1 # management vlan
+
+cloudflared_ct:
+  node: pve-01-yosemite
+  id: 298
+  hostname: cloudflared
+  tags:
+    - network
+    - management-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 1
+  memory:
+    dedicated: 512 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 4 # GiB
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp # 10.0.0.254
+      tag: 1 # management vlan
+
+ddclient_ct:
+  node: pve-01-yosemite
+  id: 299
+  hostname: ddclient
+  tags:
+    - network
+    - management-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 1
+  memory:
+    dedicated: 512 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 4 # GiB
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp # 10.0.0.253
+      tag: 1 # management vlan

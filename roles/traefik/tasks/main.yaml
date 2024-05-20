@@ -1,0 +1,45 @@
+- name: Download and install release
+  ansible.builtin.unarchive:
+    src: "{{ traefik_download_url }}"
+    dest: "{{ traefik_install_url }}"
+    remote_src: true
+    mode: u=rwx,g=rx,o=rx
+
+- name: Create configuration file
+  ansible.builtin.template:
+    src: traefik.yaml.j2
+    dest: "{{ traefik_install_dir }}/traefik.yaml"
+    owner: "{{ traefik_user.name }}"
+    group: "{{ traefik_user.name }}"
+    mode: u=rw,g=r,o=r
+
+- name: Create configuration directory
+  ansible.builtin.file:
+    path: "{{ traefik_config_dir }}"
+    owner: "{{ traefik_user.name }}"
+    group: "{{ traefik_user.name }}"
+    mode: u=rw,g=r,o=r
+    state: directory
+
+- name: Create systemd service
+  ansible.builtin.template:
+    src: traefik.service.j2
+    dest: /etc/systemd/system/traefik.service
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+
+- name: Create environment file
+  ansible.builtin.template:
+    src: traefik.conf.j2
+    dest: /etc/traefik/traefik.conf
+    owner: traefik
+    group: traefik
+    mode: u=rw,g=r,o=
+
+- name: Start traefik service
+  ansible.builtin.systemd:
+    name: traefik.service
+    state: started
+    enabled: true
+    daemon_reload: true

@@ -1,0 +1,256 @@
+servarr_ct_template:
+  node: pve-02-denali
+  id: 900
+  hostname: servarr-template
+  tags:
+    - servarr
+    - media-share
+    - services-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 1
+  memory:
+    dedicated: 1024 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 8 # GiB
+  mount_points:
+    - volume: /mnt/lxc_shares/media/
+      path: /mnt/media
+      shared: true
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp
+      ipv6:
+        address: dhcp
+      tag: 30 # services vlan
+  template: true
+
+prowlarr_ct:
+  node: pve-02-denali
+  id: 910
+  hostname: prowlarr
+  tags:
+    - servarr
+    - media-share
+    - services-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 1
+  memory:
+    dedicated: 1024 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 8 # GiB
+  mount_points:
+    - volume: /mnt/lxc_shares/media/
+      path: /mnt/media
+      shared: true
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp
+      ipv6:
+        address: dhcp
+      tag: 30 # services vlan
+
+radarr_ct:
+  node: pve-02-denali
+  id: 911
+  hostname: radarr
+  tags:
+    - servarr
+    - media-share
+    - services-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 1
+  memory:
+    dedicated: 1024 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 8 # GiB
+  mount_points:
+    - volume: /mnt/lxc_shares/media/
+      path: /mnt/media
+      shared: true
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp
+      ipv6:
+        address: dhcp
+      tag: 30 # services vlan
+
+sonarr_ct:
+  node: pve-02-denali
+  id: 912
+  hostname: sonarr
+  tags:
+    - servarr
+    - media-share
+    - services-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 1
+  memory:
+    dedicated: 1024 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 8 # GiB
+  mount_points:
+    - volume: /mnt/lxc_shares/media/
+      path: /mnt/media
+      shared: true
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp
+      ipv6:
+        address: dhcp
+      tag: 30 # services vlan
+
+lidarr_ct:
+  node: pve-02-denali
+  id: 913
+  hostname: lidarr
+  tags:
+    - servarr
+    - media-share
+    - services-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 1
+  memory:
+    dedicated: 1024 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 8 # GiB
+  mount_points:
+    - volume: /mnt/lxc_shares/media/
+      path: /mnt/media
+      shared: true
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp
+      ipv6:
+        address: dhcp
+      tag: 30 # services vlan
+
+readarr_ct:
+  node: pve-02-denali
+  id: 914
+  hostname: readarr
+  tags:
+    - servarr
+    - media-share
+    - services-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 1
+  memory:
+    dedicated: 1024 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 8 # GiB
+  mount_points:
+    - volume: /mnt/lxc_shares/media/
+      path: /mnt/media
+      shared: true
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp
+      ipv6:
+        address: dhcp
+      tag: 30 # services vlan
+
+bazarr_ct:
+  node: pve-02-denali
+  id: 915
+  hostname: bazarr
+  tags:
+    - servarr
+    - media-share
+    - services-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 1
+  memory:
+    dedicated: 1024 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 8 # GiB
+  mount_points:
+    - volume: /mnt/lxc_shares/media/
+      path: /mnt/media
+      shared: true
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp
+      ipv6:
+        address: dhcp
+      tag: 30 # services vlan
+
+overseerr_ct:
+  node: pve-02-denali
+  id: 916
+  hostname: overseerr
+  tags:
+    - servarr
+    - media-share
+    - services-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 1
+  memory:
+    dedicated: 1024 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 8 # GiB
+  mount_points:
+    - volume: /mnt/lxc_shares/media/
+      path: /mnt/media
+      shared: true
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp
+      ipv6:
+        address: dhcp
+      tag: 30 # services vlan

@@ -8,7 +8,7 @@
     name: "{{ sabnzbd_dependencies }}"
     state: present
 
-- name: Download release {{ sabnzbd_version }}
+- name: Download and install release
   ansible.builtin.unarchive:
     src: "{{ sabnzbd_download_url }}"
     dest: "{{ sabnzbd_install_dir }}"
@@ -25,7 +25,7 @@
     name: "{{ sabnzbd_config_dir }}/sabnzbd.ini"
     owner: "{{ sabnzbd_user.name }}"
     group: "{{ sabnzbd_user.name }}"
-    mode: u=rwx,g=rx,o=rx
+    mode: u=rw,g=r,o=r
     state: touch
 
 - name: Create systemd service

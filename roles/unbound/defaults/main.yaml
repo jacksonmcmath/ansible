@@ -1,0 +1,2 @@
+unbound_port: 53
+unbound_management_port: 8953

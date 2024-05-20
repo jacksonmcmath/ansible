@@ -1,0 +1,6 @@
+pve_clone_ct_pve_api_host: "{{ pve_api_host | mandatory }}"
+pve_clone_ct_pve_api_user: "{{ pve_api_user | mandatory }}"
+pve_clone_ct_pve_validate_certs: "{{ pve_validate_certs | default(false) }}"
+
+pve_clone_ct_snapshot_name: ansible_snapshot
+pve_clone_ct_snapshot_description: created by ansible for cloning ({{ now(fmt='%Y-%m-%d') }})

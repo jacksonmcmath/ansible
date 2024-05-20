@@ -1,0 +1,87 @@
+http:
+  routers:
+    prowlarr:
+      entryPoints:
+        - https
+      rule: Host(`servarr.local.squatch.dev`) && PathPrefix(`/indexers`)
+      middlewares:
+      tls:
+        certResolver: cloudflare
+      service: prowlarr
+    radarr:
+      entryPoints:
+        - https
+      rule: Host(`servarr.local.squatch.dev`) && PathPrefix(`/movies`)
+      middlewares:
+      tls:
+        certResolver: cloudflare
+      service: radarr
+    sonarr:
+      entryPoints:
+        - https
+      rule: Host(`servarr.local.squatch.dev`) && PathPrefix(`/shows`)
+      middlewares:
+      tls:
+        certResolver: cloudflare
+      service:
+    lidarr:
+      entryPoints:
+        - https
+      rule: Host(`servarr.local.squatch.dev`) && PathPrefix(`/music`)
+      middlewares:
+      tls:
+        certResolver: cloudflare
+      service: lidarr
+    readarr:
+      entryPoints:
+        - https
+      rule: Host(`servarr.local.squatch.dev`) && PathPrefix(`/books`)
+      middlewares:
+      tls:
+        certResolver: cloudflare
+      service: readarr
+    bazarr:
+      entryPoints:
+        - https
+      rule: Host(`servarr.local.squatch.dev`) && PathPrefix(`/subtitles`)
+      middlewares:
+      tls:
+        certResolver: cloudflare
+      service: bazarr
+    overseerr:
+      entryPoints:
+        - https
+      rule: Host(`plex-requests.local.squatch.dev`)
+      middlewares:
+      tls:
+        certResolver: cloudflare
+      service: overseerr
+  services:
+    prowlarr:
+      loadBalancer:
+        servers:
+          - url: http://10.0.30.10:9696
+    radarr:
+      loadBalancer:
+        servers:
+          - url: http://10.0.30.11:7878
+    sonarr:
+      loadBalancer:
+        servers:
+          - url: http://10.0.30.12:8989
+    lidarr:
+      loadBalancer:
+        servers:
+          - url: http://10.0.30.13:8686
+    readarr:
+      loadBalancer:
+        servers:
+          - url: http://10.0.30.14:8787
+    bazarr:
+      loadBalancer:
+        servers:
+          - url: http://10.0.30.15:6767
+    overseerr:
+      loadBalancer:
+        servers:
+          - url: http://10.0.30.16:5055

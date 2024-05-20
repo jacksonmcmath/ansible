@@ -1,0 +1,63 @@
+- name: Create LXC container
+  community.general.proxmox:
+    api_host: "{{ pve_api_host }}"
+    api_user: "{{ pve_api_user }}"
+    api_password: "{{ pve_api_password | default(omit) }}"
+    api_token_id: "{{ pve_api_token_id | default(omit) }}"
+    api_token_secret: "{{ pve_api_token_secret | default(omit) }}"
+    validate_certs: "{{ pve_create_ct_pve_validate_certs }}"
+
+    node: "{{ ct.node | mandatory }}"
+    vmid: "{{ ct.id | mandatory }}"
+    hostname: "{{ ct.hostname | mandatory }}"
+    pool: "{{ ct.pool | default(omit) }}"
+    description: "{{ ct.description | default(omit) }}"
+    tags: "{{ ct.tags | default(omit) }}"
+    password: "{{ ct.root_user.password | default(omit) }}"
+    pubkey: "{{ ct.root_user.public_key | mandatory }}"
+    ostype: "{{ ct.operating_system | mandatory }}"
+    ostemplate: local:vztmpl/{{ pve_create_ct_operating_systems[ct.operating_system] }}
+    cores: "{{ ct.cpu.cores | mandatory }}"
+    cpus: "{{ ct.cpu.limit | default(omit) }}"
+    cpuunits: "{{ ct.cpu.units | default(omit) }}"
+    memory: "{{ ct.memory.dedicated | mandatory }}"
+    swap: "{{ ct.memory.swap | default(ct.memory.dedicated / 2) | round | int }}"
+    disk: "{{ pve_create_ct_rootfs }}"
+    mounts: "{{ ct.mount_points is defined | ternary(pve_create_ct_mount_points | from_yaml, omit) }}"
+    netif: "{{ pve_create_ct_network_interfaces | from_yaml }}"
+    unprivileged: "{{ not ct.privileged | default(true) }}"
+    features: "{{ ct.features is defined | ternary(pve_create_ct_features, omit) }}"
+    onboot: "{{ ct.on_boot | default(true) }}"
+    startup: "{{ ct.startup is defined | ternary(pve_create_ct_startup, omit) }}"
+    hookscript: "{{ ct.hookscript | default(omit) }}"
+    state: present
+
+- name: Start LXC container
+  when:
+    - ct.template is not defined or not ct.template
+    - ct.started is defined and ct.started
+  community.general.proxmox:
+    api_host: "{{ pve_api_host }}"
+    api_user: "{{ pve_api_user }}"
+    api_password: "{{ pve_api_password | default(omit) }}"
+    api_token_id: "{{ pve_api_token_id | default(omit) }}"
+    api_token_secret: "{{ pve_api_token_secret | default(omit) }}"
+    validate_certs: "{{ pve_create_ct_pve_validate_certs }}"
+
+    vmid: "{{ ct.id }}"
+    state: started
+
+- name: Convert LXC container to template
+  when:
+    - ct.started is not defined or not ct.started
+    - ct.template is defined and ct.template
+  community.general.proxmox:
+    api_host: "{{ pve_api_host }}"
+    api_user: "{{ pve_api_user }}"
+    api_password: "{{ pve_api_password | default(omit) }}"
+    api_token_id: "{{ pve_api_token_id | default(omit) }}"
+    api_token_secret: "{{ pve_api_token_secret | default(omit) }}"
+    validate_certs: "{{ pve_create_ct_pve_validate_certs }}"
+
+    vmid: "{{ ct.id }}"
+    state: template

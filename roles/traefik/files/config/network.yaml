@@ -1,0 +1,27 @@
+http:
+  routers:
+    adguard:
+      entryPoints:
+        - https
+      rule: Host(`dns.local.squatch.dev`)
+      middlewares:
+      tls:
+        certResolver: cloudflare
+      service: adguard
+    unbound:
+      entryPoints:
+        - https
+      rule: Host(`upstream.dns.local.squatch.dev`)
+      middlewares:
+      tls:
+        certResolver: cloudflare
+      service: adguard
+  services:
+    adguard:
+      loadBalancer:
+        servers:
+          - url: http://10.0.0.10:3000
+    unbound:
+      loadBalancer:
+        servers:
+          - url: http://10.0.0.11:3000

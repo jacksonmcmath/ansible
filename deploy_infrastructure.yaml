@@ -1,0 +1,104 @@
+- name: Deploy network infrastructure
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - role: pve_create_ct
+      ct: "{{ adguard_ct }}"
+    - role: pve_create_ct
+      ct: "{{ unbound_ct }}"
+    - role: pve_create_ct
+      ct: "{{ traefik_ct }}"
+    - role: pve_create_ct
+      ct: "{{ cloudflared_ct }}"
+    - role: pve_create_ct
+      ct: "{{ ddclient_ct }}"
+
+# - name: Deploy identity & access management infrastructure
+#   hosts: localhost
+#   gather_facts: false
+#   vars_files:
+#     - /vars/infrastructure/iam.yaml
+#   roles:
+#     - role: pve_create_ct
+#       ct: "{{ blah_ct }}"
+
+- name: Deploy development infrastructure
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - role: pve_create_ct
+      ct: "{{ sandbox_01_ct }}"
+    - role: pve_create_ct
+      ct: "{{ gha_runner_01_ct }}"
+    - role: pve_create_ct
+      ct: "{{ op_connect_ct }}"
+
+- name: Deploy persistance infrastructure
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - role: pve_create_ct
+      ct: "{{ postgresql_ct }}"
+    - role: pve_create_ct
+      ct: "{{ redis_ct }}"
+
+- name: Deploy media infrastructure
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - role: pve_create_ct
+      ct: "{{ plex_media_server_ct }}"
+    - role: pve_create_ct
+      ct: "{{ qbittorrent_ct }}"
+    - role: pve_create_ct
+      ct: "{{ sabnzbd_ct }}"
+
+- name: Deploy servarr infrastructure
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - role: pve_create_ct
+      ct: "{{ prowlarr_ct }}"
+    - role: pve_create_ct
+      ct: "{{ radarr_ct }}"
+    - role: pve_create_ct
+      ct: "{{ sonarr_ct }}"
+    - role: pve_create_ct
+      ct: "{{ lidarr_ct }}"
+    - role: pve_create_ct
+      ct: "{{ readarr_ct }}"
+    - role: pve_create_ct
+      ct: "{{ bazarr_ct }}"
+    - role: pve_create_ct
+      ct: "{{ overseerr_ct }}"
+
+# - name: Deploy home automation infrastructure
+#   hosts: localhost
+#   gather_facts: false
+#   roles:
+#     - role: create_pve_vm
+#       vm: "{{ home_assistant_vm }}"
+
+- name: Deploy game server infrastructure
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - role: pve_create_ct
+      ct: "{{ pterodactyl_panel_ct }}"
+    - role: pve_create_ct
+      ct: "{{ pterodactyl_node_01_ct }}"
+
+- name: Deploy monitoring infrastructure
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - role: pve_create_ct
+      ct: "{{ heimdall_ct }}"
+    - role: pve_create_ct
+      ct: "{{ uptime_kuma_ct }}"
+    - role: pve_create_ct
+      ct: "{{ grafana_ct }}"
+    - role: pve_create_ct
+      ct: "{{ prometheus_ct }}"
+    - role: pve_create_ct
+      ct: "{{ loki_ct }}"

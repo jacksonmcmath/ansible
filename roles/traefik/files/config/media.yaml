@@ -1,0 +1,39 @@
+http:
+  routers:
+    plex-media-server:
+      entryPoints:
+        - https
+      rule: Host(`plex.local.squatch.dev`)
+      middlewares:
+      tls:
+        certResolver: cloudflare
+      service: plex-media-server
+    qbittorrent:
+      entryPoints:
+        - https
+      rule: Host(`media.local.squatch.dev`) && PathPrefix(`/torrents`)
+      middlewares:
+      tls:
+        certResolver: cloudflare
+      service: qbittorrent
+    sabnzbd:
+      entryPoints:
+        - https
+      rule: Host(`media.local.squatch.dev`) && PathPrefix(`/nzbs`)
+      middlewares:
+      tls:
+        certResolver: cloudflare
+      service: sabnzbd
+  services:
+    plex-media-server:
+      loadBalancer:
+        servers:
+          - url: http://10.0.30.8:32400
+    qbittorrent:
+      loadBalancer:
+        servers:
+          - url: http://10.0.30.21:8080
+    sabnzbd:
+      loadBalancer:
+        servers:
+          - url: http://10.0.30.22:9090

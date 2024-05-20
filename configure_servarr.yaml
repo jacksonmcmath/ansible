@@ -1,0 +1,34 @@
+- name: Configure Prowlarr
+  hosts: prowlarr.local.squatch.dev
+  roles:
+    - prowlarr
+
+- name: Configure Radarr
+  hosts: radarr.local.squatch.dev
+  roles:
+    - radarr
+
+- name: Configure Sonarr
+  hosts: sonarr.local.squatch.dev
+  roles:
+    - sonarr
+
+- name: Configure Lidarr
+  hosts: lidarr.local.squatch.dev
+  roles:
+    - lidarr
+
+- name: Configure Readarr
+  hosts: readarr.local.squatch.dev
+  roles:
+    - readarr
+
+- name: Configure Bazarr
+  hosts: bazarr.local.squatch.dev
+  roles:
+    - bazarr
+
+- name: Configure Overseerr
+  hosts: overseerr.local.squatch.dev
+  roles:
+    - overseerr

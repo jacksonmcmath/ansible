@@ -1,0 +1,51 @@
+postgresql_ct:
+  node: pve-01-yosemite
+  id: 401
+  hostname: postgres
+  tags:
+    - persistance
+    - services-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 2
+  memory:
+    dedicated: 2048 # MiB
+    swap: 2048 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 128 # GiB
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp
+      tag: 30 # services vlan
+
+redis_ct:
+  node: pve-01-yosemite
+  id: 402
+  hostname: redis
+  tags:
+    - persistance
+    - services-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 2
+  memory:
+    dedicated: 2048 # MiB
+    swap: 2048 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 128 # GiB
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp
+      tag: 30 # services vlan

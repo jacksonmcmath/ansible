@@ -1,9 +1,9 @@
 - name: Install dependencies
-  ansible.builtin.package:
+  ansible.builtin.apt:
     name: "{{ prowlarr_dependencies }}"
     state: present
 
-- name: Download and install
+- name: Download and install release
   ansible.builtin.unarchive:
     src: "{{ prowlarr_download_url }}"
     dest: "{{ prowlarr_install_dir }}"
@@ -17,7 +17,7 @@
     path: "{{ prowlarr_config_dir }}"
     owner: "{{ prowlarr_user.name }}"
     group: "{{ prowlarr_user.name }}"
-    mode: u=rwx,g=rx,o=rx
+    mode: u=rw,g=r,o=r
     state: directory
 
 - name: Create systemd service
@@ -28,7 +28,7 @@
     group: root
     mode: u=rw,g=r,o=r
 
-- name: Start prowlarr daemon
+- name: Start prowlarr service
   ansible.builtin.systemd:
     name: prowlarr.service
     state: started

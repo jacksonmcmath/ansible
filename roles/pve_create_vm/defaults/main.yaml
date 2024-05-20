@@ -1,0 +1,3 @@
+pve_create_vm_api_host: "{{ pve_api_host }}"
+pve_create_vm_api_user: "{{ pve_api_user }}"
+pve_create_vm_validate_certs: "{{ pve_validate_certs | default(false) }}"

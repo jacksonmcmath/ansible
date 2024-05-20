@@ -1,0 +1,6 @@
+unbound_user:
+  name: unbound
+  uid: 53
+  create_home: true
+  shell: /usr/sbin/nologin
+  system: true

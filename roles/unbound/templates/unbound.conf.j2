@@ -1,0 +1,30 @@
+#
+# See the unbound.conf(5) man page.
+#
+# See /usr/share/doc/unbound/examples/unbound.conf for a commented reference config file.
+#
+# The following line includes additional configuration files from the /etc/unbound/unbound.conf.d directory.
+include-toplevel: "/etc/unbound/unbound.conf.d/*.conf"
+
+server:
+    verbosity: 1
+
+    interface: 0.0.0.0
+    port: {{ unbound_port }}
+
+    prefetch: yes
+
+    num-threads: 2
+
+    access-control: 10.0.0.0/8 allow
+    access-control: 172.16.0.0/12 allow
+    access-control: 192.168.0.0/16 allow
+
+    private-address: 10.0.0.0/8
+    private-address: 172.16.0.0/12
+    private-address: 192.168.0.0/16
+    private-address: 169.254.0.0/16
+    private-address: fd00::/8
+    private-address: fe80::/10
+
+    private-domain: local.squatch.dev

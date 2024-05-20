@@ -1,16 +1,17 @@
-- name: Create primary group for user {{ user.name ~ '(' ~ user.uid ~ ')' }}
+- name: Create user primary group
+  when: user.group is undefined or user.group == user.name
   ansible.builtin.group:
     name: "{{ user.name }}"
     gid: "{{ user.uid }}"
     system: "{{ user.system | default(omit) }}"
     state: present
-  when: user.group is undefined or user.group == user.name
 
-- name: Create user {{ user.name ~ '(' ~ user.uid ~ ')' }}
+- name: Create user
   ansible.builtin.user:
     name: "{{ user.name }}"
     uid: "{{ user.uid }}"
     create_home: "{{ user.create_home | default(omit) }}"
+    home: "{{ user.home | default(omit) }}"
     group: "{{ user.group | default(user.name) }}"
     groups: "{{ user.groups | default(omit) }}"
     password: "{{ user.password | default('!') }}"
@@ -18,10 +19,9 @@
     system: "{{ user.system | default(omit) }}"
     state: present
 
-- name: Add SSH key for user {{ user.name ~ '(' ~ user.uid ~ ')' }}
+- name: Add user's SSH key
+  when: user.authorized_key is defined
   ansible.posix.authorized_key:
     user: "{{ user.name }}"
     key: "{{ user.authorized_key }}"
-    comment: added via ansible ({{ now(utc=True, fmt='%Y-%m-%dT%H:%M:%SZ') }})
     state: present
-  when: user.authorized_key is defined

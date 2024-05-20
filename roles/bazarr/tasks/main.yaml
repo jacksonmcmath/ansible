@@ -1,0 +1,48 @@
+- name: Add non-free repository
+  ansible.builtin.apt_repository:
+    repo: deb http://deb.debian.org/debian bookworm main non-free
+    state: present
+  register: bazarr_non_free_repository
+
+- name: Install dependencies
+  ansible.builtin.apt:
+    name: "{{ bazarr_dependencies }}"
+    state: present
+    update_cache: "{{ bazarr_non_free_repository.changed }}"
+
+- name: Download and install release
+  ansible.builtin.unarchive:
+    src: "{{ bazarr_download_url }}"
+    dest: "{{ bazarr_install_dir }}"
+    remote_src: true
+    owner: "{{ bazarr_user.name }}"
+    group: "{{ bazarr_user.name }}"
+    mode: u=rwx,g=rx,o=rx
+
+- name: Install python requirements
+  ansible.builtin.pip:
+    executable: pip3
+    requirements: "{{ bazarr_install_dir }}/requirements.txt"
+
+- name: Create configuration directory
+  ansible.builtin.file:
+    path: "{{ bazarr_config_dir }}"
+    owner: "{{ bazarr_user.name }}"
+    group: "{{ bazarr_user.name }}"
+    mode: u=rw,g=r,o=r
+    state: directory
+
+- name: Create systemd service
+  ansible.builtin.template:
+    src: bazarr.service.j2
+    dest: /etc/systemd/system/bazarr.service
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+
+- name: Start bazarr service
+  ansible.builtin.systemd:
+    name: bazarr.service
+    state: started
+    enabled: true
+    daemon_reload: true

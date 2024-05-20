@@ -1,0 +1,11 @@
+- name: Install dependencies
+  ansible.builtin.apt:
+    name: snapd
+    state: present
+
+- name: Install Overseerr
+  community.general.snap:
+    name:
+      - core
+      - overseerr
+    state: present

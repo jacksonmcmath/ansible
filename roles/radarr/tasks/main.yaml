@@ -1,9 +1,9 @@
 - name: Install dependencies
-  ansible.builtin.package:
+  ansible.builtin.apt:
     name: "{{ radarr_dependencies }}"
     state: present
 
-- name: Download and install
+- name: Download and install release
   ansible.builtin.unarchive:
     src: "{{ radarr_download_url }}"
     dest: "{{ radarr_install_dir }}"
@@ -17,7 +17,7 @@
     path: "{{ radarr_config_dir }}"
     owner: "{{ radarr_user.name }}"
     group: "{{ radarr_user.name }}"
-    mode: u=rwx,g=rx,o=rx
+    mode: u=rw,g=r,o=r
     state: directory
 
 - name: Create systemd service
@@ -28,7 +28,7 @@
     group: root
     mode: u=rw,g=r,o=r
 
-- name: Start radarr daemon
+- name: Start radarr service
   ansible.builtin.systemd:
     name: radarr.service
     state: started

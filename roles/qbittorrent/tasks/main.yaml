@@ -3,7 +3,7 @@
     name: "{{ qbittorrent_dependencies }}"
     state: present
 
-- name: Install qbittorrent
+- name: Install qBittorrent
   ansible.builtin.apt:
     name: qbittorrent-nox
     state: present
@@ -16,7 +16,7 @@
     group: root
     mode: u=rw,g=r,o=r
 
-- name: Start qbittorrent daemon
+- name: Start qbittorrent service
   ansible.builtin.systemd:
     name: qbittorrent.service
     state: started

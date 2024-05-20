@@ -1,0 +1,89 @@
+plex_media_server_ct:
+  node: pve-02-denali
+  id: 999
+  hostname: plex-media-server
+  tags:
+    - media-share
+    - services-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 4
+  memory:
+    dedicated: 4096 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 8 # GiB
+  mount_points:
+    - volume: /mnt/lxc_shares/media/
+      path: /mnt/media
+      read_only: true
+      shared: true
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp
+      ipv6:
+        address: dhcp
+      tag: 30 # services vlan
+
+qbittorrent_ct:
+  node: pve-02-denali
+  id: 901
+  hostname: qbittorrent
+  tags:
+    - media-share
+    - vpn-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 1
+  memory:
+    dedicated: 1024 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 8 # GiB
+  mount_points:
+    - volume: /mnt/lxc_shares/media/
+      path: /mnt/media
+      shared: true
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp
+      tag: 90 # vpn vlan
+
+sabnzbd_ct:
+  node: pve-02-denali
+  id: 902
+  hostname: sabnzbd
+  tags:
+    - media-share
+    - vpn-vlan
+  root_user:
+    public_key: "{{ root_user_public_ssh_key }}"
+  privileged: false
+  cpu:
+    cores: 1
+  memory:
+    dedicated: 1024 # MiB
+  operating_system: debian
+  rootfs:
+    volume: local-zfs
+    size: 8 # GiB
+  mount_points:
+    - volume: /mnt/lxc_shares/media/
+      path: /mnt/media
+      shared: true
+  network_interfaces:
+    - name: eth0
+      bridge: vmbr0
+      ipv4:
+        address: dhcp
+      tag: 90 # vpn vlan

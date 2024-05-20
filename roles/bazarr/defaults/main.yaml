@@ -1,0 +1,3 @@
+bazarr_install_dir: /opt/bazarr
+bazarr_config_dir: /home/{{ bazarr_user.name }}/config
+bazarr_port: 6767

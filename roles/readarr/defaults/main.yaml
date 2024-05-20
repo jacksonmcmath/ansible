@@ -1,0 +1,3 @@
+readarr_install_dir: /opt/readarr
+readarr_config_dir: /home/{{ readarr_user.name }}/config
+readarr_port: 8787
