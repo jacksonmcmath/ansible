@@ -1,5 +1,4 @@
-adguard_version: v0.107.48
+adguard_version: v0.107.49
 adguard_install_dir: /opt/adguard
 adguard_config_dir: "{{ adguard_install_dir }}/config"
-adguard_management_port: 3000
-adguard_dns_rewrites: "{{ dns_ rewites | mandatory }}"
+adguard_dns_rewrites: "{{ dns_rewrites | mandatory }}"

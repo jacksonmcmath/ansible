@@ -1,0 +1,16 @@
+- name: Add Cloudflare repository
+  ansible.builtin.deb822_repository:
+    name: cloudflare
+    types: deb
+    uris: https://pkg.cloudflare.com/cloudflared
+    suites: bookworm
+    components: main
+    signed_by: https://pkg.cloudflare.com/cloudflare-main.gpg
+    state: present
+  register: cloudflare_repository
+
+- name: Install cloudflared
+  ansible.builtin.apt:
+    name: cloudflared
+    state: present
+    update_cache: "{{ cloudflare_repository.changed }}"

@@ -1,4 +1,14 @@
-- name: Create user primary group
+- name: Install user's shell
+  when: >
+    user.shell is defined and
+    '/sh' not in user.shell and
+    '/bash' not in user.shell and
+    '/nologin' not in user.shell
+  ansible.builtin.package:
+    name: "{{ user.shell | split('/') | last }}"
+    state: present
+
+- name: Create user's primary group
   when: user.group is undefined or user.group == user.name
   ansible.builtin.group:
     name: "{{ user.name }}"

@@ -1,116 +1,116 @@
 dns_rewrites:
-    # hostname conveniences
-    - domain: traefik.local.squatch.dev
-      answer: 10.0.0.2
-    - domain: adguard.local.squatch.dev
-      answer: 10.0.0.10
-    - domain: unbound.local.squatch.dev
-      answer: 10.0.0.11
+  # hostname conveniences
+  - domain: traefik.local.squatch.dev
+    answer: 10.0.0.2
+  - domain: adguard.local.squatch.dev
+    answer: 10.0.0.10
+  - domain: unbound.local.squatch.dev
+    answer: 10.0.0.11
 
-    - domain: ansible.local.squatch.dev
-      answer: 10.0.0.100
+  - domain: ansible.local.squatch.dev
+    answer: 10.0.0.100
 
-    - domain: pve-01-yosemite.local.squatch.dev
-      answer: 10.0.0.101
-    - domain: pve-02-denali.local.squatch.dev
-      answer: 10.0.0.102
-    - domain: pve-03-acadia.local.squatch.dev
-      answer: 10.0.0.103
+  - domain: pve-01-yosemite.local.squatch.dev
+    answer: 10.0.0.101
+  - domain: pve-02-denali.local.squatch.dev
+    answer: 10.0.0.102
+  - domain: pve-03-acadia.local.squatch.dev
+    answer: 10.0.0.103
 
-    - domain: ddclient.local.squatch.dev
-      answer: 10.0.0.253
-    - domain: cloudflared.local.squatch.dev
-      answer: 10.0.0.254
+  - domain: ddclient.local.squatch.dev
+    answer: 10.0.0.253
+  - domain: cloudflared.local.squatch.dev
+    answer: 10.0.0.254
 
-    - domain: sb-01.local.squatch.dev
-      answer: 10.0.10.201
+  - domain: sb-01.local.squatch.dev
+    answer: 10.0.10.201
 
-    - domain: home-assistant.local.squatch.dev
-      answer: 10.0.20.2
+  - domain: home-assistant.local.squatch.dev
+    answer: 10.0.20.2
 
-    - domain: heimdall.local.squatch.dev
-      answer: 10.0.30.2
-    - domain: uptime-kuma.local.squatch.dev
-      answer: 10.0.30.3
-    - domain: prometheus.local.squatch.dev
-      answer: 10.0.30.4
-    - domain: grafana.local.squatch.dev
-      answer: 10.0.30.5
-    - domain: loki.local.squatch.dev
-      answer: 10.0.30.6
+  - domain: heimdall.local.squatch.dev
+    answer: 10.0.30.2
+  - domain: uptime-kuma.local.squatch.dev
+    answer: 10.0.30.3
+  - domain: prometheus.local.squatch.dev
+    answer: 10.0.30.4
+  - domain: grafana.local.squatch.dev
+    answer: 10.0.30.5
+  - domain: loki.local.squatch.dev
+    answer: 10.0.30.6
 
-    - domain: plex-media-server.local.squatch.dev
-      answer: 10.0.30.8
+  - domain: plex-media-server.local.squatch.dev
+    answer: 10.0.30.8
 
-    - domain: prowlarr.local.squatch.dev
-      answer: 10.0.30.10
-    - domain: radarr.local.squatch.dev
-      answer: 10.0.30.11
-    - domain: sonarr.local.squatch.dev
-      answer: 10.0.30.12
-    - domain: lidarr.local.squatch.dev
-      answer: 10.0.30.13
-    - domain: readarr.local.squatch.dev
-      answer: 10.0.30.14
-    - domain: bazarr.local.squatch.dev
-      answer: 10.0.30.15
-    - domain: overseerr.local.squatch.dev
-      answer: 10.0.30.16
+  - domain: prowlarr.local.squatch.dev
+    answer: 10.0.30.10
+  - domain: radarr.local.squatch.dev
+    answer: 10.0.30.11
+  - domain: sonarr.local.squatch.dev
+    answer: 10.0.30.12
+  - domain: lidarr.local.squatch.dev
+    answer: 10.0.30.13
+  - domain: readarr.local.squatch.dev
+    answer: 10.0.30.14
+  - domain: bazarr.local.squatch.dev
+    answer: 10.0.30.15
+  - domain: overseerr.local.squatch.dev
+    answer: 10.0.30.16
 
-    - domain: postgres.local.squatch.dev
-      answer: 10.0.30.32
-    - domain: redis.local.squatch.dev
-      answer: 10.0.30.33
+  - domain: postgres.local.squatch.dev
+    answer: 10.0.30.32
+  - domain: redis.local.squatch.dev
+    answer: 10.0.30.33
 
-    - domain: op-connect.local.squatch.dev
-      answer: 10.0.30.64
+  - domain: op-connect.local.squatch.dev
+    answer: 10.0.30.64
 
-    - domain: pterodactyl-panel.local.squatch.dev
-      answer: 10.0.30.100
-    - domain: pterodactyl-node-01.local.squatch.dev
-      answer: 10.0.30.101
+  - domain: pterodactyl-panel.local.squatch.dev
+    answer: 10.0.30.100
+  - domain: pterodactyl-node-01.local.squatch.dev
+    answer: 10.0.30.101
 
-    - domain: gha-runner-01.local.squatch.dev
-      answer: 10.0.30.201
+  - domain: gha-runner-01.local.squatch.dev
+    answer: 10.0.30.201
 
-    - domain: qbittorrent.local.squatch.dev
-      answer: 10.0.50.11
-    - domain: sabnzbd.local.squatch.dev
-      answer: 10.0.50.12
+  - domain: qbittorrent.local.squatch.dev
+    answer: 10.0.90.11
+  - domain: sabnzbd.local.squatch.dev
+    answer: 10.0.90.12
 
-    # reverse proxy routings
-    - domain: admin.local.squatch.dev
-      answer: 10.0.0.2
+  # reverse proxy routings
+  - domain: admin.local.squatch.dev
+    answer: 10.0.0.2
 
-    - domain: dns.local.squatch.dev
-      answer: 10.0.0.2
-    - domain: upstream.dns.local.squatch.dev
-      answer: 10.0.0.2
+  - domain: dns.local.squatch.dev
+    answer: 10.0.0.2
+  - domain: upstream.dns.local.squatch.dev
+    answer: 10.0.0.2
 
-    - domain: home.local.squatch.dev
-      answer: 10.0.0.2
+  - domain: home.local.squatch.dev
+    answer: 10.0.0.2
 
-    - domain: pve.local.squatch.dev
-      answer: 10.0.0.2
+  - domain: pve.local.squatch.dev
+    answer: 10.0.0.2
 
-    - domain: dashboard.local.squatch.dev
-      answer: 10.0.0.2
-    - domain: status.local.squatch.dev
-      answer: 10.0.0.2
-    - domain: metrics.local.squatch.dev
-      answer: 10.0.0.2
+  - domain: dashboard.local.squatch.dev
+    answer: 10.0.0.2
+  - domain: status.local.squatch.dev
+    answer: 10.0.0.2
+  - domain: metrics.local.squatch.dev
+    answer: 10.0.0.2
 
-    - domain: pterodactyl.local.squatch.dev
-      answer: 10.0.0.2
+  - domain: pterodactyl.local.squatch.dev
+    answer: 10.0.0.2
 
-    - domain: servarr.local.squatch.dev
-      answer: 10.0.0.2
-    - domain: plex-requests.local.squatch.dev
-      answer: 10.0.0.2
+  - domain: servarr.local.squatch.dev
+    answer: 10.0.0.2
+  - domain: plex-requests.local.squatch.dev
+    answer: 10.0.0.2
 
-    - domain: plex.local.squatch.dev
-      answer: 10.0.0.2
-    - domain: qbt.local.squatch.dev
-      answer: 10.0.0.2
-    - domain: sab.local.squatch.dev
-      answer: 10.0.0.2
+  - domain: plex.local.squatch.dev
+    answer: 10.0.0.2
+  - domain: qbt.local.squatch.dev
+    answer: 10.0.0.2
+  - domain: sab.local.squatch.dev
+    answer: 10.0.0.2

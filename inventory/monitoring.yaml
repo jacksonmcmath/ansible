@@ -1,0 +1,7 @@
+monitoring:
+  hosts:
+    heimdall.local.squatch.dev:
+    uptime-kuma.local.squatch.dev:
+    grafana.local.squatch.dev:
+    prometheus.local.squatch.dev:
+    loki.local.squatch.dev:

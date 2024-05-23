@@ -1,3 +1,11 @@
+- name: Create install directory
+  ansible.builtin.file:
+    path: "{{ prowlarr_install_dir }}"
+    owner: "{{ prowlarr_user.name }}"
+    group: "{{ prowlarr_user.name }}"
+    mode: u=rw,g=r,o=r
+    state: directory
+
 - name: Install dependencies
   ansible.builtin.apt:
     name: "{{ prowlarr_dependencies }}"
@@ -8,6 +16,8 @@
     src: "{{ prowlarr_download_url }}"
     dest: "{{ prowlarr_install_dir }}"
     remote_src: true
+    extra_opts:
+      - "--strip-components=1"
     owner: "{{ prowlarr_user.name }}"
     group: "{{ prowlarr_user.name }}"
     mode: u=rwx,g=rx,o=rx

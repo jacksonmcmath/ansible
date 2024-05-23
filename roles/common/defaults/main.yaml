@@ -1,0 +1,15 @@
+common_users: []
+
+common_packages:
+  - build-essential
+  - coreutils
+  - curl
+  - git
+  - rsyslog
+  - sudo
+  - tar
+  - vim
+  - wget
+  - zsh
+  - zsh-autosuggestions
+  - zsh-syntax-highlighting

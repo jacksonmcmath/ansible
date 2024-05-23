@@ -3,6 +3,14 @@
     repo: deb http://deb.debian.org/debian bookworm main non-free
     state: present
 
+- name: Create install directory
+  ansible.builtin.file:
+    path: "{{ sabnzbd_install_dir }}"
+    owner: "{{ sabnzbd_user.name }}"
+    group: "{{ sabnzbd_user.name }}"
+    mode: u=rw,g=r,o=r
+    state: directory
+
 - name: Install dependencies
   ansible.builtin.apt:
     name: "{{ sabnzbd_dependencies }}"

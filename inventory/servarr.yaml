@@ -1,0 +1,9 @@
+servarr:
+  hosts:
+    prowlarr.local.squatch.dev:
+    radarr.local.squatch.dev:
+    sonarr.local.squatch.dev:
+    lidarr.local.squatch.dev:
+    readarr.local.squatch.dev:
+    bazarr.local.squatch.dev:
+    overseerr.local.squatch.dev:

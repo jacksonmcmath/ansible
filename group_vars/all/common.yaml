@@ -20,7 +20,7 @@ jrm_user:
     - sudo
     - staff
     - media
-  shell: /bin/bash
+  shell: /bin/zsh
   authorized_key: "{{ jrm_user_public_ssh_key }}"
 
 media_group:

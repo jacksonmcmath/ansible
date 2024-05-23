@@ -4,7 +4,5 @@
     state: restarted
 
 - name: Run unbound-control-setup
-  become: true
-  become_user: "{{ unbound_user.name }}"
   ansible.builtin.command: unbound-control-setup
   changed_when: true

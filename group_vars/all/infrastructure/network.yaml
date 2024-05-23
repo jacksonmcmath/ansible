@@ -24,6 +24,8 @@ adguard_ct:
       ipv6:
         address: dhcp
       tag: 1 # management vlan
+  features:
+    nesting: true
 
 unbound_ct:
   node: pve-01-yosemite
@@ -51,6 +53,8 @@ unbound_ct:
       ipv6:
         address: dhcp
       tag: 1 # management vlan
+  features:
+    nesting: true
 
 traefik_ct:
   node: pve-01-yosemite

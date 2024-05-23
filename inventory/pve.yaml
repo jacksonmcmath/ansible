@@ -1,0 +1,16 @@
+pve_nodes:
+  hosts:
+    pve-01-yosemite.local.squatch.dev:
+    pve-02-denali.local.squatch.dev:
+    pve-03-acadia.local.squatch.dev:
+
+pve_vms:
+  children:
+
+pve_cts:
+  children:
+    network:
+    media:
+    servarr:
+    gaming:
+    monitoring:

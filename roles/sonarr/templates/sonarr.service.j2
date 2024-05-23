@@ -1,0 +1,15 @@
+[Unit]
+Description=Sonarr Daemon
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User={{ sonarr_user.name }}
+Group={{ sonarr_user.name }}
+ExecStart={{ sonarr_install_dir }}/Sonarr -nobrowser -data={{ sonarr_config_dir }}
+TimeoutStopSec=20
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

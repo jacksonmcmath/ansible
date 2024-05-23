@@ -1,0 +1,8 @@
+pi_hole_user:
+  name: pihole
+  uid: 53
+  create_home: false
+  groups:
+    - sudo
+  shell: /usr/sbin/nologin
+  system: true

@@ -1,0 +1,5 @@
+- name: Restart adguard service
+  ansible.builtin.systemd:
+    name: adguard.service
+    state: restarted
+

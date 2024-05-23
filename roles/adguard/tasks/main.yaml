@@ -1,8 +1,18 @@
+- name: Create install directory
+  ansible.builtin.file:
+    path: "{{ adguard_install_dir }}"
+    owner: "{{ adguard_user.name }}"
+    group: "{{ adguard_user.name }}"
+    mode: u=rw,g=r,o=r
+    state: directory
+
 - name: Download and install release
   ansible.builtin.unarchive:
     src: "{{ adguard_download_url }}"
     dest: "{{ adguard_install_dir }}"
     remote_src: true
+    extra_opts:
+      - "--strip-components=2"
     owner: "{{ adguard_user.name }}"
     group: "{{ adguard_user.name }}"
     mode: u=rwx,g=rx,o=rx
@@ -19,10 +29,10 @@
   ansible.builtin.template:
     src: AdGuardHome.yaml.j2
     dest: "{{ adguard_config_dir }}/AdGuardHome.yaml"
-    force: false
     owner: "{{ adguard_user.name }}"
     group: "{{ adguard_user.name }}"
     mode: u=rw,g=r,o=r
+  notify: Restart adguard service
 
 - name: Create systemd service
   ansible.builtin.template:
@@ -31,6 +41,16 @@
     owner: root
     group: root
     mode: u=rw,g=r,o=r
+  notify: Restart adguard service
+
+# - name: Allow binary to bind to ports < 1024 as a non-root user
+#   community.general.capabilities:
+#     path: "{{ adguard_install_dir }}/AdGuardHome"
+#     capability: "{{ item }}"
+#     state: present
+#   loop:
+#     - CAP_NET_BIND_SERVICE=+eip
+#     - CAP_NET_RAW=+eip
 
 - name: Start adguard service
   ansible.builtin.systemd:

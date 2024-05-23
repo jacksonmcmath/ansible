@@ -1,0 +1,5 @@
+media:
+  hosts:
+    plex-media-server.local.squatch.dev:
+    qbittorrent.local.squatch.dev:
+    sabnzbd.local.squatch.dev:

@@ -4,8 +4,24 @@ playbooks and roles for my homelab
 
 # TODO
 
-- TLS/SSL
+- unbound
+- traefik
+- cloudflared
+- verify ddclient
 
-- test plex install on linux
-  - verify service, user, config dir, etc
+- plex
+
+- pterodactyl
+
+- heimdall
+- uptime kuma
+- grafana / prometheus / loki
+
+- postgres
+- redis
+
+- sandbox
+- op connect
+- gha runner
+
 

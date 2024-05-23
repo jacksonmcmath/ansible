@@ -1,3 +1,11 @@
+- name: Create install directory
+  ansible.builtin.file:
+    path: "{{ bazarr_install_dir }}"
+    owner: "{{ bazarr_user.name }}"
+    group: "{{ bazarr_user.name }}"
+    mode: u=rw,g=r,o=r
+    state: directory
+
 - name: Add non-free repository
   ansible.builtin.apt_repository:
     repo: deb http://deb.debian.org/debian bookworm main non-free
@@ -21,8 +29,9 @@
 
 - name: Install python requirements
   ansible.builtin.pip:
-    executable: pip3
     requirements: "{{ bazarr_install_dir }}/requirements.txt"
+    virtualenv: "{{ bazarr_install_dir }}/venv"
+    virtualenv_command: python3 -m venv
 
 - name: Create configuration directory
   ansible.builtin.file:

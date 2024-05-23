@@ -1,0 +1,7 @@
+dependencies:
+  - role: create_group
+    group: "{{ media_group }}"
+  - role: create_user
+    user: "{{ squ4tch_user }}"
+  - role: create_user
+    user: "{{ jrm_user }}"

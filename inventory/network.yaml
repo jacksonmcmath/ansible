@@ -1,0 +1,7 @@
+network:
+  hosts:
+    traefik.local.squatch.dev:
+    adguard.local.squatch.dev:
+    unbound.local.squatch.dev:
+    ddclient.local.squatch.dev:
+    cloudflared.local.squatch.dev:

@@ -1,0 +1,10 @@
+use=webv4
+webv4='https://cloudflare.com/cdn-cgi/trace'
+webv4-skip='ip='
+
+protocol=cloudflare, \
+zone=squatch.dev, \
+ttl=1, \
+login=token, \
+password='{{ ddclient_cloudflare_api_token }}' \
+vpn.squatch.dev

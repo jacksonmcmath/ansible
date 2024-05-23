@@ -1,3 +1,11 @@
+- name: Create install directory
+  ansible.builtin.file:
+    path: "{{ lidarr_install_dir }}"
+    owner: "{{ lidarr_user.name }}"
+    group: "{{ lidarr_user.name }}"
+    mode: u=rw,g=r,o=r
+    state: directory
+
 - name: Install dependencies
   ansible.builtin.apt:
     name: "{{ lidarr_dependencies }}"
@@ -8,6 +16,8 @@
     src: "{{ lidarr_download_url }}"
     dest: "{{ lidarr_install_dir }}"
     remote_src: true
+    extra_opts:
+      - "--strip-components=1"
     owner: "{{ lidarr_user.name }}"
     group: "{{ lidarr_user.name }}"
     mode: u=rwx,g=rx,o=rx

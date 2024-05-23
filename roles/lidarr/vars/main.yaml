@@ -2,7 +2,7 @@ lidarr_download_url: http://lidarr.servarr.com/v1/update/master/updatefile?os=li
 
 lidarr_user:
   name: lidarr
-  uid: 914
+  uid: 913
   create_home: true
   groups:
     - media

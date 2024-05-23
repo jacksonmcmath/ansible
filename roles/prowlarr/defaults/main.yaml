@@ -1,3 +1,3 @@
 prowlarr_install_dir: /opt/prowlarr
-prowlarr_config_dir: /home/{{ prowlarr_usesr.name }}/config
+prowlarr_config_dir: /home/{{ prowlarr_user.name }}/config
 prowlarr_port: 9696

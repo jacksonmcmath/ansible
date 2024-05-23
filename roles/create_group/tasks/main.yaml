@@ -1,4 +1,4 @@
-- name: Create group {{ group.name ~ '(' ~ group.uid ~ ')' }}
+- name: Create group
   ansible.builtin.group:
     name: "{{ group.name }}"
     gid: "{{ group.gid }}"
