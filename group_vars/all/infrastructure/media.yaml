@@ -11,7 +11,7 @@ plex_media_server_ct:
   cpu:
     cores: 4
   memory:
-    dedicated: 4096 # MiB
+    dedicated: 6144 # MiB
   operating_system: debian
   rootfs:
     volume: local-zfs
@@ -26,8 +26,6 @@ plex_media_server_ct:
       bridge: vmbr0
       ipv4:
         address: dhcp
-      ipv6:
-        address: dhcp
       tag: 30 # services vlan
 
 qbittorrent_ct:
@@ -41,9 +39,10 @@ qbittorrent_ct:
     public_key: "{{ root_user_public_ssh_key }}"
   privileged: false
   cpu:
-    cores: 1
+    cores: 2
   memory:
-    dedicated: 1024 # MiB
+    dedicated: 4096 # MiB
+    swap: 1024 # MiB
   operating_system: debian
   rootfs:
     volume: local-zfs
@@ -70,9 +69,10 @@ sabnzbd_ct:
     public_key: "{{ root_user_public_ssh_key }}"
   privileged: false
   cpu:
-    cores: 1
+    cores: 2
   memory:
-    dedicated: 1024 # MiB
+    dedicated: 4096 # MiB
+    swap: 1024 # MiB
   operating_system: debian
   rootfs:
     volume: local-zfs

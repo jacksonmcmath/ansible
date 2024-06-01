@@ -1,0 +1,23 @@
+- name: Apply common configurations
+  hosts: media
+  remote_user: root
+  roles:
+    - common
+
+- name: Configure Plex Media Server
+  hosts: plex-media-server.local.squatch.dev
+  remote_user: root
+  roles:
+    - plex_media_server
+
+- name: Configure qBittorrent
+  hosts: qbittorrent.local.squatch.dev
+  remote_user: root
+  roles:
+    - qbittorrent
+
+- name: Configure sabnzbd
+  hosts: sabnzbd.local.squatch.dev
+  remote_user: root
+  roles:
+    - sabnzbd

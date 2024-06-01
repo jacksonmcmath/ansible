@@ -1,4 +1,4 @@
-sonarr_download_url: https://services.sonarr.tv/v1/download/main/latest?version=3&os=linux
+sonarr_download_url: https://services.sonarr.tv/v1/download/main/latest?version=4&os=linux&arch=x64
 
 sonarr_user:
   name: sonarr

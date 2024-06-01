@@ -1,0 +1,15 @@
+[Unit]
+Description=Uptime Kuma Daemon
+After=network.target
+
+[Service]
+Type=simple
+User={{ uptime_kuma_user.name }}
+Group={{ uptime_kuma_user.name }}
+WorkingDirectory={{ uptime_kuma_install_dir }}
+ExecStartPre=/bin/node {{ uptime_kuma_install_dir }}/extra/download-dist.js
+ExecStart=/bin/node {{ uptime_kuma_install_dir }}/server/server.js
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

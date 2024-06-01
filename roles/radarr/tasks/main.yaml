@@ -3,7 +3,7 @@
     path: "{{ radarr_install_dir }}"
     owner: "{{ radarr_user.name }}"
     group: "{{ radarr_user.name }}"
-    mode: u=rw,g=r,o=r
+    mode: u=rwx,g=rx,o=rx
     state: directory
 
 - name: Install dependencies
@@ -27,7 +27,7 @@
     path: "{{ radarr_config_dir }}"
     owner: "{{ radarr_user.name }}"
     group: "{{ radarr_user.name }}"
-    mode: u=rw,g=r,o=r
+    mode: u=rwx,g=rx,o=rx
     state: directory
 
 - name: Create systemd service

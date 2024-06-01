@@ -21,8 +21,6 @@ adguard_ct:
       bridge: vmbr0
       ipv4:
         address: dhcp # 10.0.0.10
-      ipv6:
-        address: dhcp
       tag: 1 # management vlan
   features:
     nesting: true
@@ -50,8 +48,6 @@ unbound_ct:
       bridge: vmbr0
       ipv4:
         address: dhcp # 10.0.0.8
-      ipv6:
-        address: dhcp
       tag: 1 # management vlan
   features:
     nesting: true

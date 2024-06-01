@@ -3,7 +3,7 @@
     path: "{{ bazarr_install_dir }}"
     owner: "{{ bazarr_user.name }}"
     group: "{{ bazarr_user.name }}"
-    mode: u=rw,g=r,o=r
+    mode: u=rwx,g=rx,o=rx
     state: directory
 
 - name: Add non-free repository
@@ -38,7 +38,7 @@
     path: "{{ bazarr_config_dir }}"
     owner: "{{ bazarr_user.name }}"
     group: "{{ bazarr_user.name }}"
-    mode: u=rw,g=r,o=r
+    mode: u=rwx,g=rx,o=rx
     state: directory
 
 - name: Create systemd service

@@ -3,7 +3,7 @@
     path: "{{ lidarr_install_dir }}"
     owner: "{{ lidarr_user.name }}"
     group: "{{ lidarr_user.name }}"
-    mode: u=rw,g=r,o=r
+    mode: u=rwx,g=rx,o=rx
     state: directory
 
 - name: Install dependencies
@@ -27,7 +27,7 @@
     path: "{{ lidarr_config_dir }}"
     owner: "{{ lidarr_user.name }}"
     group: "{{ lidarr_user.name }}"
-    mode: u=rw,g=r,o=r
+    mode: u=rwx ,g=rx,o=rx
     state: directory
 
 - name: Create systemd service

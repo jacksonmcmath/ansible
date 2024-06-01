@@ -21,8 +21,6 @@ heimdall_ct:
       bridge: vmbr0
       ipv4:
         address: dhcp
-      ipv6:
-        address: dhcp
       tag: 30 # services vlan
 
 uptime_kuma_ct:
@@ -47,8 +45,6 @@ uptime_kuma_ct:
     - name: eth0
       bridge: vmbr0
       ipv4:
-        address: dhcp
-      ipv6:
         address: dhcp
       tag: 30 # services vlan
 
@@ -75,8 +71,6 @@ grafana_ct:
       bridge: vmbr0
       ipv4:
         address: dhcp
-      ipv6:
-        address: dhcp
       tag: 30 # services vlan
 
 prometheus_ct:
@@ -102,8 +96,6 @@ prometheus_ct:
       bridge: vmbr0
       ipv4:
         address: dhcp
-      ipv6:
-        address: dhcp
       tag: 30 # services vlan
 
 loki_ct:
@@ -128,7 +120,5 @@ loki_ct:
     - name: eth0
       bridge: vmbr0
       ipv4:
-        address: dhcp
-      ipv6:
         address: dhcp
       tag: 30 # services vlan

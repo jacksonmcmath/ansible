@@ -1,0 +1,35 @@
+- name: Apply common configurations
+  hosts: network
+  remote_user: root
+  roles:
+    - common
+
+- name: Configure AdGuard Home
+  hosts: adguard.local.squatch.dev
+  remote_user: root
+  roles:
+    - adguard
+
+- name: Configure Unbound
+  hosts: unbound.local.squatch.dev
+  remote_user: root
+  roles:
+    - unbound
+
+- name: Configure Traefik
+  hosts: traefik.local.squatch.dev
+  remote_user: root
+  roles:
+    - traefik
+
+- name: Configure cloudflared
+  hosts: cloudflared.local.squatch.dev
+  remote_user: root
+  roles:
+    - cloudflared
+
+- name: Configure ddclient
+  hosts: ddclient.local.squatch.dev
+  remote_user: root
+  roles:
+    - ddclient

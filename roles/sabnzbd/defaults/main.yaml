@@ -1,3 +1,4 @@
+sabnzbd_version: 4.3.1
 sabnzbd_install_dir: /opt/sabnzbd
 sabnzbd_config_dir: /home/{{ sabnzbd_user.name }}/config
 sabnzbd_port: 9090

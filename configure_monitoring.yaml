@@ -1,0 +1,17 @@
+- name: Apply common configurations
+  hosts: monitoring
+  remote_user: root
+  roles:
+    - common
+
+- name: Configure Heimdall
+  hosts: heimdall.local.squatch.dev
+  remote_user: root
+  roles:
+    - heimdall
+
+- name: Configure Uptime Kuma
+  hosts: uptime-kuma.local.squatch.dev
+  remote_user: root
+  roles:
+    - uptime_kuma

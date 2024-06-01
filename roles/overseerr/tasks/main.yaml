@@ -1,6 +1,9 @@
 - name: Install dependencies
   ansible.builtin.apt:
-    name: snapd
+    name:
+      - snapd
+      - squashfuse
+      - fuse
     state: present
 
 - name: Install Overseerr
@@ -9,3 +12,8 @@
       - core
       - overseerr
     state: present
+
+- name: Start Overseerr service
+  ansible.builtin.systemd:
+    name: snap.overseerr.daemon.service
+    state: started

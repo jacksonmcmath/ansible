@@ -3,7 +3,7 @@
     path: "{{ sonarr_install_dir }}"
     owner: "{{ sonarr_user.name }}"
     group: "{{ sonarr_user.name }}"
-    mode: u=rw,g=r,o=r
+    mode: u=rwx,g=rx,o=rx
     state: directory
 
 - name: Install dependencies
@@ -27,7 +27,7 @@
     path: "{{ sonarr_config_dir }}"
     owner: "{{ sonarr_user.name }}"
     group: "{{ sonarr_user.name }}"
-    mode: u=rw,g=r,o=r
+    mode: u=rwx,g=rx,o=rx
     state: directory
 
 - name: Create systemd service

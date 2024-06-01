@@ -1,0 +1,10 @@
+uptime_kuma_dependencies:
+  - nodejs
+  - npm
+
+uptime_kuma_user:
+  name: uptime-kuma
+  uid: 430
+  create_home: false
+  shell: /usr/sbin/nologin
+  system: true

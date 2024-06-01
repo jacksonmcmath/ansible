@@ -26,8 +26,6 @@ servarr_ct_template:
       bridge: vmbr0
       ipv4:
         address: dhcp
-      ipv6:
-        address: dhcp
       tag: 30 # services vlan
   template: true
 
@@ -59,8 +57,6 @@ prowlarr_ct:
       bridge: vmbr0
       ipv4:
         address: dhcp
-      ipv6:
-        address: dhcp
       tag: 30 # services vlan
 
 radarr_ct:
@@ -90,8 +86,6 @@ radarr_ct:
     - name: eth0
       bridge: vmbr0
       ipv4:
-        address: dhcp
-      ipv6:
         address: dhcp
       tag: 30 # services vlan
 
@@ -123,8 +117,6 @@ sonarr_ct:
       bridge: vmbr0
       ipv4:
         address: dhcp
-      ipv6:
-        address: dhcp
       tag: 30 # services vlan
 
 lidarr_ct:
@@ -154,8 +146,6 @@ lidarr_ct:
     - name: eth0
       bridge: vmbr0
       ipv4:
-        address: dhcp
-      ipv6:
         address: dhcp
       tag: 30 # services vlan
 
@@ -187,8 +177,6 @@ readarr_ct:
       bridge: vmbr0
       ipv4:
         address: dhcp
-      ipv6:
-        address: dhcp
       tag: 30 # services vlan
 
 bazarr_ct:
@@ -218,8 +206,6 @@ bazarr_ct:
     - name: eth0
       bridge: vmbr0
       ipv4:
-        address: dhcp
-      ipv6:
         address: dhcp
       tag: 30 # services vlan
 
@@ -251,6 +237,6 @@ overseerr_ct:
       bridge: vmbr0
       ipv4:
         address: dhcp
-      ipv6:
-        address: dhcp
       tag: 30 # services vlan
+  features:
+    fuse: true

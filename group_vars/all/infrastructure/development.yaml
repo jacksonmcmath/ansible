@@ -95,7 +95,5 @@ op_connect_ct:
     - name: eth0
       bridge: vmbr0
       ipv4:
-        address: dhcp
-      ipv6:
         address: dhcp # 10.0.30.64
       tag: 30 # services vlan

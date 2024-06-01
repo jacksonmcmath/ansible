@@ -1,3 +1,3 @@
-sonarr_install_dir: /opt/radarr
+sonarr_install_dir: /opt/sonarr
 sonarr_config_dir: /home/{{ sonarr_user.name }}/config
 sonarr_port: 8989

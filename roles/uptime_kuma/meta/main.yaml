@@ -1,0 +1,3 @@
+dependencies:
+  - role: create_user
+    user: "{{ uptime_kuma_user }}"
